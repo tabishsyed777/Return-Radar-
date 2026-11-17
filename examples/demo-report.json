@@ -1,0 +1,94 @@
+{
+  "data_origin": "Synthetic seeded demo (seed 42)",
+  "rows": {
+    "train": 6534,
+    "validation": 1734,
+    "test": 2400,
+    "purged": 1332
+  },
+  "periods": {
+    "train": {
+      "first_order": "2024-01-01 00:00:00+00:00",
+      "last_order": "2024-10-21 00:13:40.868405696+00:00",
+      "latest_label": "2024-11-20 00:13:40.868405696+00:00"
+    },
+    "validation": {
+      "first_order": "2024-11-20 00:38:52.994416200+00:00",
+      "last_order": "2025-02-06 00:26:38.533211096+00:00",
+      "latest_label": "2025-03-08 00:26:38.533211096+00:00"
+    },
+    "test": {
+      "first_order": "2025-03-08 00:51:50.659221600+00:00",
+      "last_order": "2025-06-24 00:00:00+00:00",
+      "latest_label": "2025-07-24 00:00:00+00:00"
+    }
+  },
+  "features": [
+    "price",
+    "discount",
+    "quantity",
+    "customer_tenure_days",
+    "category",
+    "channel"
+  ],
+  "threshold_from_validation": 0.20500000000000002,
+  "test_prevalence": 0.2529166666666667,
+  "model": {
+    "roc_auc": 0.697056372438671,
+    "average_precision": 0.46500486409588915,
+    "brier_score": 0.1696785300880233,
+    "precision": 0.36551724137931035,
+    "recall": 0.6985172981878089,
+    "confusion_matrix_tn_fp_fn_tp": [
+      1057,
+      736,
+      183,
+      424
+    ],
+    "assumed_cost_per_order": 1.2233333333333334
+  },
+  "training_prior_baseline": {
+    "roc_auc": 0.5,
+    "average_precision": 0.2529166666666667,
+    "brier_score": 0.18948076771368225,
+    "precision": 0.2529166666666667,
+    "recall": 1.0,
+    "confusion_matrix_tn_fp_fn_tp": [
+      0,
+      1793,
+      0,
+      607
+    ],
+    "assumed_cost_per_order": 1.4941666666666666
+  },
+  "baseline_threshold_from_validation": 0.0,
+  "cost_assumptions": {
+    "missed_return": 8,
+    "false_alarm": 2,
+    "units": "illustrative cost units, not measured savings"
+  },
+  "example_explanation": {
+    "intercept_log_odds": -0.7251702495218405,
+    "contributions_log_odds": {
+      "numeric__price": -0.05679629497726599,
+      "numeric__discount": 0.28934916751487505,
+      "numeric__quantity": -0.3831801931778903,
+      "numeric__customer_tenure_days": 0.20779008214010805,
+      "category__category_apparel": 0.45302142264088097,
+      "category__category_electronics": -0.0,
+      "category__category_home": -0.0,
+      "category__channel_mobile": -0.0,
+      "category__channel_web": -0.4715919385187809
+    },
+    "sum_log_odds": -0.6865780038999136,
+    "probability": 0.33479474515881835,
+    "meaning": "Exact additive model contributions in log-odds, not causal effects."
+  },
+  "limitations": [
+    "Synthetic data does not establish real-world performance.",
+    "Costs are assumptions; no intervention benefit has been measured.",
+    "Strict column allowlist does not prove source features were collected at purchase time.",
+    "Customers may recur across time splits; this evaluates future orders, not unseen customers.",
+    "All test outcomes must have fully matured before offline evaluation."
+  ]
+}
